@@ -20,5 +20,5 @@ const schema = new mongoose.Schema({
     }
 },{timestamps:true})
 
-export const KhuVucModel = mongoose.model('ThucUong',schema)
+export const ThucUongModel = mongoose.model('ThucUong',schema)
 

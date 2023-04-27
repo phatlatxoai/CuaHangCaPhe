@@ -34,5 +34,5 @@ const schema = new mongoose.Schema({
 
 },{timestamps:true})
 
-export const BanModel = mongoose.model('NhaCungCap',schema)
+export const NhaCungCapModel = mongoose.model('NhaCungCap',schema)
 
