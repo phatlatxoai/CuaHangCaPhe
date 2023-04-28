@@ -2,45 +2,50 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import { KhuVucModel } from './models/KhuVucModel.js'
-import { BanModel } from './models/BanModel.js'
+// import { KhuVucModel } from './models/KhuVucModel.js'
+// import { BanModel } from './models/BanModel.js'
+import nhanvienRoute from './routes/nhanvien.js'
 
 const app = express()
-const URI = 'mongodb+srv://ntplakao123:12345@caphe.twcayy6.mongodb.net/?retryWrites=true&w=majority'
+
+// link database của Phát
+// const URI = 'mongodb+srv://ntplakao123:12345@caphe.twcayy6.mongodb.net/?retryWrites=true&w=majority'
+// link database của Kiên
+const URI = 'mongodb+srv://huatrungkien126:kien19032002@cafe.j8dtvxx.mongodb.net/?retryWrites=true&w=majority'
+
 app.use(bodyParser.json({limit: '30mb'}))
 app.use(bodyParser.urlencoded({extended:true,limit:'30mb'}))
 app.use(cors())
 
+// http://localhost:5000/nhanvien
+app.use('/nhanvien',nhanvienRoute)
 
 mongoose.connect(URI,{useNewUrlParser:true, useUnifiedTopology:true}).then(()=>{
-
-try {
-    console.log('ket noi thanh cong ')
-} catch (error) {
-    console.log('err',error)
-}
-
+    try {
+        console.log('Kết nối thành công')
+    } catch (error) {
+        console.log('err',error)
+    }
 })
 
-
-
-app.get('/KhuVuc',async  (req,res)=>{
-     const KhuVuc = await KhuVucModel.find()
-     res.send(KhuVuc)
+app.get('/',(req,res)=>{
+    res.send('Hello')
 })
 
-app.get('/Ban',async  (req,res)=>{
-    const Ban = await BanModel.find()
-    res.send(Ban)
-})
+// chưa dùng tới
+// app.get('/KhuVuc',async  (req,res)=>{
+//      const KhuVuc = await KhuVucModel.find()
+//      res.send(KhuVuc)
+// })
+
+// app.get('/Ban',async  (req,res)=>{
+//     const Ban = await BanModel.find()
+//     res.send(Ban)
+// })
 
 const PORT = process.env.PORT || 5000;
 
 
 app.listen(PORT,() => {
-
-    console.log(` PORT cua server la ${PORT}`)
-
-
+    console.log(`Server run on PORT: http://localhost:${PORT}`)
 })
-
