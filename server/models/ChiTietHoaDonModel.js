@@ -19,5 +19,5 @@ const schema = new mongoose.Schema({
 
 },{timestamps:true})
 
-export const BanModel = mongoose.model('ChiTietHoaDon',schema)
+export const ChiTietHoaDonModel = mongoose.model('ChiTietHoaDon',schema)
 
