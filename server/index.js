@@ -8,12 +8,14 @@ import nhanvienRoute from './routes/nhanvien.js'
 
 import authRouter from './routes/authRouter.js'
 
+import nhacungcapRoute from './routes/nhacungcap.js'
+
 const app = express()
 
 // link database của Phát
 // const URI = 'mongodb+srv://ntplakao123:12345@caphe.twcayy6.mongodb.net/?retryWrites=true&w=majority'
 // link database của Kiên
-const URI = 'mongodb+srv://ntplakao123:12345@caphe.twcayy6.mongodb.net/?retryWrites=true&w=majority'
+const URI = 'mongodb+srv://quangbrave987:12345@cluster0.havafup.mongodb.net/?retryWrites=true&w=majority'
 
 // giới hạn request gửi lên mấy chủ dưới dạng json với kích thước tối đa 30MB
 app.use(bodyParser.json({limit: '30mb'}))
@@ -24,6 +26,7 @@ app.use(cors())
 // http://localhost:5000/nhanvien
 app.use('/nhanvien',nhanvienRoute)
 app.use('/dangnhap',authRouter)
+app.use('/nhacungcap',nhacungcapRoute)
 
 // kết nói với database
 mongoose.connect(URI,{useNewUrlParser:true, useUnifiedTopology:true}).then(()=>{
