@@ -5,7 +5,8 @@ import cors from 'cors'
 // import { KhuVucModel } from './models/KhuVucModel.js'
 // import { BanModel } from './models/BanModel.js'
 import nhanvienRoute from './routes/nhanvien.js'
-
+import cookieParser from 'cookie-parser'
+import requireLogin from './middlewares/requireLogin.js'
 import authRouter from './routes/authRouter.js'
 
 const app = express()
@@ -17,12 +18,14 @@ const URI = 'mongodb+srv://ntplakao123:12345@caphe.twcayy6.mongodb.net/?retryWri
 
 // giới hạn request gửi lên mấy chủ dưới dạng json với kích thước tối đa 30MB
 app.use(bodyParser.json({limit: '30mb'}))
-
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true,limit:'30mb'}))
 app.use(cors())
 
+// middleware bắt buộc đăng nhập để sử dụng bất kì chức năng nào trong web
+
 // http://localhost:5000/nhanvien
-app.use('/nhanvien',nhanvienRoute)
+app.use('/nhanvien',requireLogin, nhanvienRoute)
 app.use('/dangnhap',authRouter)
 
 // kết nói với database
