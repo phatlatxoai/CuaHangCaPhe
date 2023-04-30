@@ -1,10 +1,9 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import jwt  from 'jsonwebtoken';
 import { NhanVienModel } from '../models/NhanVienModel.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
 
 const login = async (req, res) => {
   try {
@@ -25,13 +24,28 @@ const login = async (req, res) => {
     }
 
     // Tạo một JSON Web Token để đăng nhập thành công
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET,{ expiresIn: '1h' });
+
 
     // Gửi token trả về cho client
-    res.status(200).json({ success: true, message: 'Login successful', token });
+    res.setHeader('Authorization', 'Bearer ' + token);
+
+    res.status(200).json({ success: true, message: 'Login successful', token ,user });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to login', error });
   }
 };
 
-export {login}
+const logout = async (req, res) => {
+
+
+  // Gán token mới vào header của response
+
+
+
+
+
+
+}
+
+export {login,logout}
