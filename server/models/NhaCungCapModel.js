@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.Schema({
+const nhacungcapschema = new mongoose.Schema({
 
     TenNhaCungCap:{
         type:String,
@@ -21,12 +21,12 @@ const schema = new mongoose.Schema({
 
     },
     TongTienHang:{
-        type:Int16Array,
+        type:Number,
         required:true,
 
     },
     No:{
-        type:Int16Array,
+        type:Number,
         required:true,
 
     },
@@ -34,5 +34,5 @@ const schema = new mongoose.Schema({
 
 },{timestamps:true})
 
-export const NhaCungCapModel = mongoose.model('NhaCungCap',schema)
+export const NhaCungCapModel = mongoose.model('NhaCungCap',nhacungcapschema)
 
