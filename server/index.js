@@ -15,8 +15,10 @@ const app = express()
 
 // link database của Phát
 // const URI = 'mongodb+srv://ntplakao123:12345@caphe.twcayy6.mongodb.net/?retryWrites=true&w=majority'
+// link database của Quang
+// const URI = 'mongodb+srv://quangbrave987:12345@cluster0.havafup.mongodb.net/?retryWrites=true&w=majority'
 // link database của Kiên
-const URI = 'mongodb+srv://quangbrave987:12345@cluster0.havafup.mongodb.net/?retryWrites=true&w=majority'
+const URI = 'mongodb+srv://huatrungkien126:kien19032002@cafe.j8dtvxx.mongodb.net/?retryWrites=true&w=majority'
 
 // giới hạn request gửi lên mấy chủ dưới dạng json với kích thước tối đa 30MB
 app.use(bodyParser.json({limit: '30mb'}))
